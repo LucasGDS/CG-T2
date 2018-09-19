@@ -1,0 +1,51 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+} */
+body {
+  margin: 0px;
+  padding: 0px;
+}
+h1{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+#buttons{
+  text-align: center;
+}
+#buttonslow{
+  text-align: center;
+}
+button{
+  width:180px;
+  height:50px;
+  background-color: #4C50AF;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: purple;
+}
+button:active {
+  background-color: magenta;
+}
+
+#canvas{
+  padding: 0;
+  margin: auto;
+  display: block;
+  width: 800px;
+  height: 600px;
+}
+.imgs{
+  text-align: center;
+}
+a {
+  color: #00B7FF;
+}
