@@ -67,7 +67,19 @@ canvas.addEventListener('mousemove', function(evt) {
   }
   else if (drawing === 2)
   {
-    
+    for (let i=0;i<next;++i)
+    {
+      if(mousePos.x<= listapontos[i].x + 5 && mousePos.x>= listapontos[i].x - 5)
+      {
+        if(mousePos.y<= listapontos[i].y + 5 && mousePos.y>= listapontos[i].y - 5)
+        {
+          ctx.beginPath();
+          ctx.fillStyle = 'cyan'; 
+          ctx.arc(listapontos[i].x, listapontos[i].y, 5, 0, 2 * Math.PI, true); 
+          ctx.fill(); 
+        }
+      }
+    }
   } 
 }, false);
 
