@@ -16,7 +16,6 @@ var next = 0;
 var drawing = 0;
 var hlpoint = -1;
 var mousedown = 0;
-var moving = 0;
 
 function writeMessage(canvas, message) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -50,10 +49,8 @@ function getMousePos(canvas, evt) {
     y: evt.clientY - rect.top
   };
 }
-canvas.addEventListener('mousemove', function(evt) {
-  var mousePos = getMousePos(canvas, evt);
-  var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-  writeMessage(canvas, message);
+
+function redraw(mousePos) {
 
   if (drawing === 1)
   {
@@ -100,7 +97,14 @@ canvas.addEventListener('mousemove', function(evt) {
         //hlpoint = -1;
       }
     }
-  } 
+  }
+}
+
+canvas.addEventListener('mousemove', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+  var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+  writeMessage(canvas, message);
+  redraw(mousePos);
 }, false);
 
 canvas.addEventListener('mousedown', function(evt) { //mousedown or mouseclick?
@@ -130,7 +134,13 @@ canvas.addEventListener('mouseup', function(evt) {
   hlpoint = -1;
 }, false); 
 
-function cleancanvas()
+function clearcanvas()
 {
+  listapontos = [];
+  next = 0;
+  drawing = 0;
+  hlpoint = -1;
+  mousedown = 0;
 
+  writeMessage(canvas, " ");
 }
