@@ -14,6 +14,9 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 var listapontos = [];
 var next = 0;
 var drawing = 0;
+var hlpoint = -1;
+var mousedown = 0;
+var moving = 0;
 
 function writeMessage(canvas, message) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,29 +72,46 @@ canvas.addEventListener('mousemove', function(evt) {
   {
     for (let i=0;i<next;++i)
     {
-      if(mousePos.x<= listapontos[i].x + 5 && mousePos.x>= listapontos[i].x - 5)
+      if((mousePos.x<= listapontos[i].x + 5 && mousePos.x>= listapontos[i].x - 5) || (hlpoint==i && mousedown === 1))
       {
-        if(mousePos.y<= listapontos[i].y + 5 && mousePos.y>= listapontos[i].y - 5)
+        if((mousePos.y<= listapontos[i].y + 5 && mousePos.y>= listapontos[i].y - 5) || (hlpoint==i && mousedown === 1))
         {
           ctx.beginPath();
           ctx.fillStyle = 'cyan'; 
           ctx.arc(listapontos[i].x, listapontos[i].y, 5, 0, 2 * Math.PI, true); 
           ctx.fill(); 
+          hlpoint = i;
+          if (mousedown === 1)
+          {
+            listapontos[i] = {x : mousePos.x, y: mousePos.y};
+          }
+          if (mousedown === 0)
+          {
+            hlpoint = -1;
+          }
         }
+        else 
+        {
+          //hlpoint = -1;
+        }
+      }
+      else
+      {
+        //hlpoint = -1;
       }
     }
   } 
 }, false);
 
-canvas.addEventListener('click', function(evt) {
+canvas.addEventListener('mousedown', function(evt) { //mousedown or mouseclick?
   var mousePos = getMousePos(canvas, evt);
+  mousedown = 1; 
 
   if(drawing === 0 || drawing === 1)
   {
     listapontos[next] = {x : mousePos.x, y: mousePos.y};
     ++next;
   }
-  console.log(listapontos);
 
   if(next === 1)
   {
@@ -102,5 +122,15 @@ canvas.addEventListener('click', function(evt) {
   {
     drawing = 2;
   }
-
+  console.log(listapontos);
 }, false);
+
+canvas.addEventListener('mouseup', function(evt) {
+  mousedown = 0;
+  hlpoint = -1;
+}, false); 
+
+function cleancanvas()
+{
+
+}
