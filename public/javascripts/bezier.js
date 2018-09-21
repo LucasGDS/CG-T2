@@ -41,7 +41,23 @@ function writeMessage(canvas, message) {
     ctx.strokeStyle = 'red';
     ctx.stroke();
   }
-  
+
+  if(next === 4)
+  {
+    for (let i=0;i<next-1;i += 4)
+    {
+      ctx.moveTo(listapontos[i].x,listapontos[i].y);
+      for(var t=0;t<1;t += 0.01)
+      {
+        var tx,ty;
+        tx = (1-t)*(1-t)*(1-t)*listapontos[i+0].x+3*(1-t)*(1-t)*t*listapontos[i+1].x+3*(1-t)*t*t*listapontos[i+2].x+t*t*t*listapontos[i+3].x;
+        ty = (1-t)*(1-t)*(1-t)*listapontos[i+0].y+3*(1-t)*(1-t)*t*listapontos[i+1].y+3*(1-t)*t*t*listapontos[i+2].y+t*t*t*listapontos[i+3].y;
+        ctx.lineTo(tx,ty);
+        ctx.strokeStyle = 'yellow';
+        ctx.stroke();
+      }
+    }
+  }
 }
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
