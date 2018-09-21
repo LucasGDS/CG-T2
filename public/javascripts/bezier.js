@@ -25,27 +25,12 @@ function writeMessage(canvas, message) {
   ctx.font = '11pt Calibri';
   ctx.fillStyle = 'white';
   ctx.fillText(message, 10, 25);
-
-  for (let i=0;i<next;++i)
-  {
-    ctx.beginPath();
-    ctx.fillStyle = 'blue'; 
-    ctx.arc(listapontos[i].x, listapontos[i].y, 5, 0, 2 * Math.PI, true); 
-    ctx.fill(); 
-
-    if(i == next-1)
-      break;
-    ctx.beginPath();
-    ctx.moveTo(listapontos[i].x,listapontos[i].y);
-    ctx.lineTo(listapontos[i+1].x,listapontos[i+1].y);
-    ctx.strokeStyle = 'red';
-    ctx.stroke();
-  }
-
+  
   if(next === 4)
   {
     for (let i=0;i<next-1;i += 3)
     {
+      ctx.beginPath();
       ctx.moveTo(listapontos[i].x,listapontos[i].y);
       for(var t=0;t<1;t += 0.01)
       {
@@ -60,6 +45,7 @@ function writeMessage(canvas, message) {
   }
   if(next === 3)
   {
+    ctx.beginPath();
     for (let i=0;i<next-1;i += 2)
     {
       ctx.moveTo(listapontos[i].x,listapontos[i].y);
@@ -74,6 +60,22 @@ function writeMessage(canvas, message) {
       }
     }
   }
+  for (let i=0;i<next;++i)
+  {
+    ctx.beginPath();
+    ctx.fillStyle = 'blue'; 
+    ctx.arc(listapontos[i].x, listapontos[i].y, 5, 0, 2 * Math.PI, true); 
+    ctx.fill(); 
+    
+    if(i == next-1)
+    break;
+    ctx.beginPath();
+    ctx.moveTo(listapontos[i].x,listapontos[i].y);
+    ctx.lineTo(listapontos[i+1].x,listapontos[i+1].y);
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+  }
+
 }
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
