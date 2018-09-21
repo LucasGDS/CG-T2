@@ -16,6 +16,7 @@ var next = 0;
 var drawing = 0;
 var hlpoint = -1;
 var mousedown = 0;
+var points = 4;
 
 function writeMessage(canvas, message) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -122,7 +123,7 @@ canvas.addEventListener('mousedown', function(evt) { //mousedown or mouseclick?
     drawing = 1;
   }
 
-  if(next === 4)
+  if(next === points)
   {
     drawing = 2;
   }
@@ -143,4 +144,10 @@ function clearcanvas()
   mousedown = 0;
 
   writeMessage(canvas, " ");
+}
+
+function changeNumber(inputvalue)
+{
+  clearcanvas();
+  points = Math.floor(inputvalue);
 }

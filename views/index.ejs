@@ -12,7 +12,9 @@
     <h1><%= title %></h1>
     <div id="buttons">
       <button onclick="clearcanvas()"> CLEAR CANVAS </button>
-
+    </div>
+    <div id="buttonslow">
+      <p> POINTS: <input name="points" value="4" min="2" type="number" oninput="changeNumber(this.value)">  </p>
     </div>
 
     <script src='/javascripts/bezier.js' ></script>
